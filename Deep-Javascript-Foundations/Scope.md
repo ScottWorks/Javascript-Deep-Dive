@@ -71,10 +71,114 @@ foo(2); // 2 4 12
 
 ![Lexical Scope](/Deep-Javascript-Foundations/images/lex-scope-bubble.png)
 
-### Nested Scope
+### Function Scope
+
+- It is possible to encapsulate variables that may shadow one another (resulting in collisions) by using function scope. Simply declare a funciton and place your variable of interest inside.
+- In the case that the variable encapsulation is ephermeral, it is possible to wrap the function statement (creating a function expression) then invoke it after as follows:
+
+```js
+// Without encapsulation
+// foo is defined two times in the same scope
+var foo1 = 'bar';
+var foo1 = 'bar2';
+
+console.log(foo1); // bar2
+
+// With encapsulation
+
+var foo2 = 'bar';
+
+(function baz() {
+  var foo2 = 'bar2';
+  console.log(foo2); // bar2
+})();
+
+console.log(foo2); // bar
+```
+
+### Block Scoping
+
+- Block scoping refers to the scope of statements i.e. For-Loop, While, If-Else, Object literals { }, etc.
+- Using the ES6 `let` or `cosnt` declaration we can limit the scope of variables to the block.
+
+- Using `var` (function scoped)
+
+```js
+function diff(x, y) {
+  if (x > y) {
+    var tmp = x;
+    x = y;
+    y = tmp;
+  }
+  console.log(tmp); // prints value of x
+  return y - x;
+}
+```
+
+- Using `let` (block scoped)
+
+```js
+function diff(x, y) {
+  if (x > y) {
+    let tmp = x;
+    x = y;
+    y = tmp;
+  }
+  console.log(tmp); // returns reference error
+  return y - x;
+}
+```
+
+- Sidenote: The `const` keyword creates a varible that cannot be reassigned, not a value that is immutable.
+
+```js
+var a = 2;
+a++; // 3
+
+const b = 2;
+b++; // Error
+
+const c = [2];
+c[0]++; // 3 <-- This could be a problem
+```
 
 ## Hoisting
 
-## Closure
+- Hoisting is the process by which the JavaScript compiler moves declarations (variable and function) to the top of the code logic **for each scope**.
+  - Note that this only applies to declarations, statements are not hoisted.
+  - Functions are prioritized first therefore they come before variables that are hoisted.
+- In JavaScript the following will have two completely different types of behaviour:
 
-## Modules
+```js
+a = 2;
+
+var a;
+
+console.log(a); // prints 2
+
+// ---------------------------------
+
+console.log(b); // prints undefined
+
+var b = 2;
+```
+
+- The reason for this is because the variables are being hoisted upon compilation. This would look like the following if we wanted to visualize it.
+
+```js
+var a;
+var b;
+
+a = 2;
+
+console.log(a); // prints 2
+
+// ---------------------------------
+
+console.log(b); // prints undefined
+
+b = 2;
+```
+
+- It is important to remember that an assignment such as `var a = 2;` is actually done in two phases; during the compilation phase the declaration is processed, then during execution the assignment of a value to the target is handled.
+- The `let` and `const` does not initialize their variable after being hoisted and will therefore result in a 'ReferenceError'. The reason for this is mainly because it is a poor coding style to use a variable before assigning it.
