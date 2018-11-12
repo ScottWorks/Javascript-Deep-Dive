@@ -1,5 +1,6 @@
 ## Scope
 
+- Scope is defined as a set of rules that determine how the Javscript Engine can look up variables by its identifier name either in the current scope or any of the nested scopes within.
 - Scope is a compile time process, it is during the compilation where the scope decisions are being made.
   - Many people assume JavaScript is an interpreted language when in fact it is actually compiled. This is usually due to the fact that most compiled languages produce an executable once the compilation process is completed. In the case of JavaScript compilation is innocuous, typically source code is delivered to a client however clients contain browser dependent Javascript Engines (Chrome - V8, Mozilla - SpiderMonkey) which actually compile the code before executing.
   - This is evident when a syntax error has been created for example, the JavaScript engine compiles the code and detects the error while parsing the code rather then interpreting the code and stopping at the lines where the error was created.
@@ -42,6 +43,33 @@ function baz(foo) {
     3. Self-documenting code
 
 ### Lexical Scope
+
+- The first phase of compliation known as 'lexing' or 'tokenizing'. This is a process where a string of source code characters are examined then assigned semantic meaning to the tokens after parsing.
+- Lexical scope refers to scope which is defined during the lexing phase of compilation. The scope itself is defined when the code is written by a programmer, therefore it is based on the variables and blocks of scope that are user-defined.
+
+- It is easy to think of scope as a series of nested bubbles as shown below:
+
+```js
+function foo(a) {
+  var b = a * 2;
+
+  function bar(c) {
+    console.log(a, b, c);
+  }
+
+  bar(b * 3);
+}
+
+foo(2); // 2 4 12
+```
+
+- Bubble 1 encompasses the global scope, and has just one identifier in it: foo.
+
+- Bubble 2 encompasses the scope of foo, which includes the three identifiers: a, bar and b.
+
+- Bubble 3 encompasses the scope of bar, and it includes just one identifier: c.
+
+![Lexical Scope](/Deep-Javascript-Foundations/images/lex-scope-bubble.png)
 
 ### Nested Scope
 
