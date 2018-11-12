@@ -29,8 +29,19 @@ function baz(foo) {
   - The following line below the scope of `baz()` can contain a global variable declaration for `bam`
   - Another file can contain a global variable declaration for `bam`
   - Therefore from the compilers perspective we cannot make any additional assumptions other than it is not a formal declaration.
-  - If `bam` is not defined, then the variable `bam` is implicitly defined globally at runtime.
-    - During execution when `bam` is called
+  - If `bam` is not defined, then the variable `bam` is implicitly defined as a global variable at runtime.
+
+### Function Expressions
+
+- A function expression `var thisFunction = function thatFunction(){}` is different than a function declaration `function thisFunction(){}` because you are creating an expression by assingning a function to a variable.
+  - Function expressions have two types, named `var namedFunction = function namedFunction(){}` and anonymous `var thisFunction = function(){}`.
+  - In the case of the named function only the expression on the LHS is available to the global scope.
+  - Although the anonymous function expression is the most popular type the named function does have several benefits:
+    1. Function self-referencing
+    2. Debuggabled stack traces
+    3. Self-documenting code
+
+### Lexical Scope
 
 ### Nested Scope
 
