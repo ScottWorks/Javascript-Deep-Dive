@@ -16,8 +16,116 @@ function foo() {
 
 function bam(baz) {
   // This is a closure
-  baz(); // bar
+  baz();
 }
 
-foo();
+foo(); // bar
 ```
+
+### Loops and Closures
+
+- Given the following code snippet, we would expect the following output: `1 2 3 4 5`, instead we get `6 6 6 6 6`. Why is this?
+
+```js
+for (var i = 1; i <= 5; i++) {
+  setTimeout(function timer() {
+    console.log(i);
+  }, i * 1000);
+}
+```
+
+- Each cycle through the loop increments `i` by 1, and the `timer()` function is executed 5 times independent of the last iteration. The problem here is that the execution occurs within the same parent scope, the function itself has a delay of 1 second on the first iteration, by the time it returns the loop has already reach its stopping point of `i === 6`. At this point `setTimeout()` will continue to fire off another 4 times returning 6 each times.
+
+Iteration: 1
+Globally Scoped i: 1
+timer(): Waiting for 1 second
+
+Iteration: 2
+Globally Scoped i: 2
+timer(): Waiting for 1 second
+
+Iteration: 3
+Globally Scoped i: 3
+timer(): Waiting for 1 second
+
+.
+.
+.
+
+Iteration: 6
+Globally Scoped i: 6
+timer(): Waiting for 1 second
+
+Iteration: 6
+Globally Scoped i: 6
+timer(): Ok im ready, print 6
+
+.
+.
+.
+
+Iteration: 6
+Globally Scoped i: 6
+timer(): Ok im ready, print 6
+
+- To fix this we fundamentally need to do one thing, which is isolate the scope of `i` between iterations by either creating a function scope or a block scope. The function scope can be achieved by leveraging the usage of an Immediately Invoke Function Expression...
+
+```js
+for (var i = 1; i <= 5; i++) {
+  (function(j) {
+    setTimeout(function timer() {
+      console.log(j);
+    }, j * 1000);
+  })(i);
+}
+```
+
+- Notice that we essentially store the current `i` value after each iteraction by adding it to the function scope of the IIFE
+
+- Alternatively we can provide the block scope with its own instance of `i`...
+
+```js
+for (let i = 1; i <= 5; i++) {
+  setTimeout(function timer() {
+    console.log(i);
+  }, i * 1000);
+}
+```
+
+Either of these approaches would result in the following:
+
+Iteration: 1
+Locally Scoped i: 1
+timer(): Waiting for 1 second
+
+Iteration: 2
+Locally Scoped i: 2
+timer(): Waiting for 1 second
+
+Iteration: 3
+Locally Scoped i: 3
+timer(): Waiting for 1 second
+
+.
+.
+.
+
+Iteration: 6
+Locally Scoped i: 6
+timer(): Waiting for 1 second
+
+Iteration: 6
+Locally Scoped i: 1
+timer(): Ok im ready, print 1
+
+Iteration: 6
+Locally Scoped i: 2
+timer(): Ok im ready, print 2
+
+.
+.
+.
+
+Iteration: 6
+Locally Scoped i: 5
+timer(): Ok im ready, print 5
