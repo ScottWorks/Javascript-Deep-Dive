@@ -4,3 +4,4 @@ Note: this section follows closely with [You Dont Know JS: this & Object Prototy
 
 1. [`this` Keyword](this-Keyword.md)
 2. [Binding](Binding.md)
+3. [Objects](Objects.md)

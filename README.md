@@ -14,6 +14,6 @@ This is a series of notes taken while diving deeper into the lower level details
 
 - [Deep Foundations of Advanced JavaScript](https://frontendmasters.com/courses/javascript-foundations/introduction/)
 
-### Github Repos
+### Books
 
 - [You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
