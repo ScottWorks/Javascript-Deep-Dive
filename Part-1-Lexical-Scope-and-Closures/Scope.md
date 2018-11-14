@@ -69,7 +69,7 @@ foo(2); // 2 4 12
 
 - Bubble 3 encompasses the scope of bar, and it includes just one identifier: c.
 
-![Lexical Scope](/Deep-Javascript-Foundations/images/lex-scope-bubble.png)
+![Lexical Scope](/Part-1-Lexical-Scope-and-Closures/images/lex-scope-bubble.png)
 
 ### Function Scope
 
