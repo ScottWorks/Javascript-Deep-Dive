@@ -6,7 +6,7 @@ This is a series of notes taken while diving deeper into the lower level details
 
 #### [Part 1: Lexical Scope and Closures](/Part-1-Lexical-Scope-and-Closures/README.md)
 
-#### [Part 2: Object Prototypes](/Part-2-Objects-Prototypes/README.md)
+#### [Part 2: Context, Objects, and Prototypes](/Part-2-Context-Objects-Prototypes/README.md)
 
 ## References
 

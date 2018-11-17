@@ -2,7 +2,7 @@
 
 - Scope is generally handled in one of two ways; either your references are based on rules defined by **Lexical Scope** or they are handled in a "Dynamic" way. In the latter case, Dynamic Scope does not actually exist in JS, instead there is the concept of context (similar to Dynamic Scope) where access to variables and functions is handled via the **`this`** keyword. We can visualize both of these paradigms as if they were buildings where each room in the building (represented by a window) is a different scope or context object, the variables/ functions defined in that scope or context can be located based on the combination of floor and room number.
 
-![fig2](/Part-2-Objects-Prototypes/images/fig2.png)
+![fig2](/Part-2-Context-Objects-Prototypes/images/fig2.png)
 
 ### Leixcal Scope vs `Context (`this` keyword)
 
