@@ -1,5 +1,9 @@
 ## `this` Keyword
 
+- In JavaScript Scope is handled in one of two ways; either your references are based on rules defined by **Lexical Scope** or they are handled in a "Dynamic" way via the **`this`** keyword. We can visualize both of these paradigms as if they were buildings where each room in the building (represented by a window) is a different scope, the variables/ functions defined in that scope can be located based on the combination of floor and room number.
+
+![fig2](/Part-2-Objects-Prototypes/images/fig2.png)
+
 - Some common misconceptions about the `this` keyword include:
 
   1. Refers to the function itself
