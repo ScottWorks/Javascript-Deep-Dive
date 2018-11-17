@@ -147,14 +147,40 @@ console.log(c); // 5
   3. the newly constructored object is set as the `this` binding for that function call
   4. unless the function returns its own alternate object, the `new`-invoked function call will automatically return the newly constructed object.
 
-```js
-function foo(a) {
-  this.a = a;
+````js
+// when we use the new keyword javascrip will automatically do the following three things:
+function Car(make, model, color) {
+  // this = {} // automatically makes `this` an object
+  // this.prototype = Component // makes any method defined a prototype that is binded to the object and attached to the class
+
+  this.make = make;
+  this.model = model;
+  this.color = color;
+  this.mileage = 0;
+  // return this // automatically returns this
 }
 
-var bar = new foo(2);
-console.log(bar.a); // 2
-```
+// Downsides to using prototpyes is that it could conflict with prototype inheritance
+// The benefit is that all the prototypes have the exact same function, however the class function does the same thing
+Car.prototype.driveCar = function() {
+  this.mileage += 10;
+};
+
+let myNewCar = new Car('Porsche', 'GT3', 'Gray');
+myNewCar.drivecar();
+
+class Truck {
+  constructor(make, model, color) {
+    this.make = make;
+    this.model = model;
+    this.color = color;
+    this.mileage = 0;
+  }
+
+  drive() {
+    this.mileage += 19;
+  }
+}
 
 - "By calling `foo(..)` with `new` in front of it, we've constructed a new object and set that new object as the `this` for the call of `foo(..)`. **So `new` is the final way that a function call's `this` can be bound.** We'll call this new binding."
 
@@ -200,7 +226,7 @@ var obj2 = {
 
 var bar = foo.call(obj1);
 bar.call(obj2); // 2, not 3!
-```
+````
 
 - Using `this` and arrow functions can be counter productive and lead to problems down the road, therefore it is advisable (by Kyle Simpson) to either use only lexical scope and forget the pretense of `this` style code or to emprace `this` style mechanisms completely including `.bind(...)`.
 

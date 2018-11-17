@@ -45,7 +45,7 @@ function baz(foo) {
 ### Lexical Scope
 
 - The first phase of compliation known as 'lexing' or 'tokenizing'. This is a process where a string of source code characters are examined then assigned semantic meaning to the tokens after parsing.
-- Lexical scope refers to scope which is defined during the lexing phase of compilation. The scope itself is defined when the code is written by a programmer, therefore it is based on the variables and blocks of scope that are user-defined.
+- Lexical scope refers to scope which is defined during the lexing phase of compilation. The scope itself is defined when the code is written by a programmer, it is based on the placement of variables and functions with respect to the global/ function/ or block scope. This is purely defined by the users.
 
 - It is easy to think of scope as a series of nested bubbles as shown below:
 
