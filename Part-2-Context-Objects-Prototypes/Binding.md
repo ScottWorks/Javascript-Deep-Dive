@@ -147,7 +147,7 @@ console.log(c); // 5
   3. the newly constructored object is set as the `this` binding for that function call
   4. unless the function returns its own alternate object, the `new`-invoked function call will automatically return the newly constructed object.
 
-````js
+```js
 // when we use the new keyword javascrip will automatically do the following three things:
 function Car(make, model, color) {
   // this = {} // automatically makes `this` an object
@@ -181,6 +181,7 @@ class Truck {
     this.mileage += 19;
   }
 }
+```
 
 - "By calling `foo(..)` with `new` in front of it, we've constructed a new object and set that new object as the `this` for the call of `foo(..)`. **So `new` is the final way that a function call's `this` can be bound.** We'll call this new binding."
 
@@ -226,7 +227,7 @@ var obj2 = {
 
 var bar = foo.call(obj1);
 bar.call(obj2); // 2, not 3!
-````
+```
 
 - Using `this` and arrow functions can be counter productive and lead to problems down the road, therefore it is advisable (by Kyle Simpson) to either use only lexical scope and forget the pretense of `this` style code or to emprace `this` style mechanisms completely including `.bind(...)`.
 

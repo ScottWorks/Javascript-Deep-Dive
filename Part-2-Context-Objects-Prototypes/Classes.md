@@ -22,7 +22,7 @@
 
 - We can think of classes as a blueprint which describes the design of a building. The blueprints themself are not the whole story though, we must actually construct a building (an object) by following the blueprints. Therefore we use classes to construct (or instantiate) objects, each time we instantiate an object we create an "instance" which is a completely new copy of the class contaainig all of its characteristics. Think of homes that share the same blueprint, if a window gets smashed in one home does it occur to all the others? No! of course not each home is its own individual instance of a home, they share the same blueprint but that is all. In the following figure (kindly provided by [Kyle Simpson](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md)) we can see the visual relationship between two classes (foo and bar) and the object instances they produce (Foo.a1, Foo.a2, Foo.b1, Foo.b2). Keep in mind it is better to think of the direct relationship as top-down (class to an object instance) rather than the reverse indirect relationship.
 
-![fig1](/Part-2-Objects-Prototypes/images/fig1.png)
+![fig1](/Part-2-Context-Objects-Prototypes/images/fig1.png)
 
 #### Constructor
 

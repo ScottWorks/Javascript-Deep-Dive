@@ -101,4 +101,66 @@ myArray.length; // 3
 myArray.baz; // "baz"
 ```
 
-### [Further Reading](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md#property-descriptors)
+### Object Descriptors
+
+- As of ES5 all properties are described in terms of a property descriptor.
+
+```js
+var myObject = {
+  a: 2
+};
+
+Object.getOwnPropertyDescriptor(myObject, 'a');
+// {
+//    value: 2,
+//    writable: true,
+//    enumerable: true,
+//    configurable: true
+// }
+```
+
+- It is also possible to add a new property or modify an existing one (assuming the property is configurable)
+
+```js
+var myObject = {};
+
+Object.defineProperty(myObject, 'a', {
+  value: 2,
+  writable: true,
+  configurable: true,
+  enumerable: true
+});
+
+myObject.a; // 2
+```
+
+- I wont go into detail about each of these property descriptors, you can find more information [here](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch3.md#property-descriptors).
+
+### `[[GET]]`
+
+- Property access is performed via a `[[GET]]` operation for the object of interest. The built-in `[[GET]]` operation first inspects the object for a property of the requested name, if the property is found it will return it. If the `[[GET]]` operation cannot find the property then it will traverse the `[[ProtoType]]` chain until it finds it, otherwise it returns with an `undefined`.
+
+```js
+var myObject = {
+  a: 2
+};
+
+myObject.a; // 2
+myObject.b; // undefined
+```
+
+### `[[PUT]]`
+
+- The `[[PUT]]` operation behaves a bit differently than the `[[GET]]` operation. If the property at question already exists the `[[PUT]]` algorithm behaves accordingly:
+
+  1. Checks if property is an accessor descriptor, if so, setter is called (if available).
+  2. Checks if the data descriptor of the proprty has `writeable` set to `false`. If it is the program will fail silently in non-strict mode or throw a `TypeError` in strict-mode.
+  3. As a catch-all the value is set.
+
+- If the property is not present on the object then the `[[PUT]]` opertation becomes even more compicated (more on this later in [ProtoTypes](/Part-2-Context-Objects-Prototypes/Prototypes.md))
+
+### Getters & Setters
+
+### Existance
+
+### Iteration
