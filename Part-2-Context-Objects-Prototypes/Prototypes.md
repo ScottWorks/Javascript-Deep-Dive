@@ -28,6 +28,10 @@ myObject.b; // undefined
 
 - Every `[[ProtoType]]` chain is built on top of the `Object.prototype` built-in, reason being that all objects in JavaScript descend from the `Object.prototype` object. This provides us with access to utilities such as `.toString()`, `isPrototypeOf()`, and [more](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype)
 
+### `Constructor`
+
+- In JS the constructor as we know it is any declartion with the `new` keyword on the left-hand side.
+
 ### Class vs `[[ProtoType]]`
 
 - In traditional class-oritented programming languages creating a new instance of a class is analogous to using a blueprint for building identical copies of a home. Each new home that is created is its own unique instance and this process can be repeated as many times as needed. In JS however we do not follow this same process when creating creating new obhects. Instead we create multiple objects that are **linked** via the `[[ProtoType]]` chain to a common parent object. Therefor for each object instance the properties and methods from the parent are not actually being transferred to the child, rather the child references the parent properties and methods through the `[[ProtoType]]` chain.
@@ -61,3 +65,9 @@ myObject.b; // undefined
   - `[[ProtoType]]` checks `Object.prototype` object, constructor is found!
 
 - If we did not overwrite the `Foo.prototype`, the `[[ProtoType]]` chain would find `.constructor` at the `Foo.prototype`. Therefore `a1.constructor === Foo;` would return `true`.
+
+### Lexical Scope vs `Object.prototype`
+
+- As we mentioned earlier the usage of the `this` keyword is a similar concept to Dynamic Scope in the sense that references are established based on the call-site rather than author-time variable and function placement. We can see through our previous example how the `[[ProtoType]]` chain is traveresed to find the context related to the `this` keyword.
+
+![fig2](/Part-2-Context-Objects-Prototypes/images/fig2.png)

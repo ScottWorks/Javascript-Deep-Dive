@@ -1,4 +1,6 @@
-## Classes
+## Traditional Class Systems
+
+#### NOTE: This does not describe the ES6 Class system but rather class systems in traditional programming languages i.e. Java
 
 ### Class Theory
 

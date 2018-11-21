@@ -8,4 +8,6 @@ Note: this section follows closely with [You Dont Know JS: this & Object Prototy
 
 #### 3. [Objects](Objects.md)
 
-#### 4. [Classes](Classes.md)
+#### 4. [Traditional Class Systems](Classes.md)
+
+#### 5. [Prototypes](Prototypes.md)
