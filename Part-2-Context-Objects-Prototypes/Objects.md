@@ -158,9 +158,3 @@ myObject.b; // undefined
   3. As a catch-all the value is set.
 
 - If the property is not present on the object then the `[[PUT]]` opertation becomes even more compicated (more on this later in [ProtoTypes](/Part-2-Context-Objects-Prototypes/Prototypes.md))
-
-### Getters & Setters
-
-### Existance
-
-### Iteration
