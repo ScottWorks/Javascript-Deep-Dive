@@ -70,4 +70,6 @@ myObject.b; // undefined
 
 - As we mentioned earlier the usage of the `this` keyword is a similar concept to Dynamic Scope in the sense that references are established based on the call-site rather than author-time variable and function placement. We can see through our previous example how the `[[ProtoType]]` chain is traveresed to find the context related to the `this` keyword.
 
+- "`[[Prototype]]` mechanism is an internal link that exists on one object which references another object. This linkage is exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the `[[Prototype]]` linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the look-up, its `[[Prototype]]` is followed, and so on. This series of links between objects forms what is called the "prototype chain". In other words, the actual mechanism, the essence of what's important to the functionality we can leverage in JavaScript, is all about objects being linked to other objects.", [source](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md#chapter-6-behavior-delegation).
+
 ![fig2](/Part-2-Context-Objects-Prototypes/images/fig2.png)
