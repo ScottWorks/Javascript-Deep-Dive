@@ -20,4 +20,5 @@ This is a series of notes taken while diving deeper into the lower level details
 
 ### Websites
 
+- [Mozilla Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [javascript.info](https://javascript.info/intro)
