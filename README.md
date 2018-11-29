@@ -8,6 +8,8 @@ This is a series of notes taken while diving deeper into the lower level details
 
 #### [Part 2: Context, Objects, and Prototypes](/Part-2-Context-Objects-Prototypes/README.md)
 
+#### [Part 3: Asynchrony in JavaScript](/Part-3-Callbacks-Promises-AsyncAwait/README.md)
+
 ## References
 
 ### Videos

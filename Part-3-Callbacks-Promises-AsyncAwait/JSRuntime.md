@@ -45,7 +45,7 @@ console.log(bar(7)); //returns 42
 
 - The message queue is a list of messages that are waiting to be processed, each message has an associated callback function. When the stack is empty the message queue is checked, if there is a callback function available it will be moved to the stack. This happens when asynchronous events occur in the program i.e. button click, http request, etc, provided that a callback or promise is associated with the event.
 
-### Event Loop
+#### Event Loop
 
 - When JS is executed it is done so inside of a hosting environment, traditionally this has been web browsers however with the advent of Node.js JS is available in servers, IoT devices, cars, etc. Host enviroments can have APIs that are used to manage requests such as DOM events, HTTP requests, and timers. If a function interacts with the API it is asynchronous as the execution is external to the JS program. At an abstract level when a function of this natures is called in the stack it sends a message and callback function to the API, then pops off the stack. When the API resolves the request, the callback function is moved to the message queue. **The event loop manages the message queue by inserting the callback functions onto the call stack when it is empty**. The following psuedo code demonstrates this process in a very high level manner.
 
@@ -76,7 +76,3 @@ console.log('Prints Second');
 8. Call stack empty, event loop moves callback to stack from message queue
 9. `console.log('Print Third')` is added to call stack, then removed from call stack
 10. Finished
-
-### Parallel Threading
-
--
