@@ -194,4 +194,4 @@ ajax('http://some.url.1', response);
 ajax('http://some.url.2', response);
 ```
 
-- As you can see we are processing the array in 1,000 entry increments, then we use the `setTimeout()` method to tell the host enviroment to pull the `response` function off the call stack for 0 milliseconds, move it to the message queue then put it back on the call stack when it empties. This frees up the call stack to execute other code while the array is processed.
+- As you can see we are processing the array in 1,000 entry increments, then we use the `setTimeout()` method to tell the host enviroment to pull the `response` function off the call stack for 0 milliseconds, move it to the message queue then put it back on the call stack when it empties. This frees up the call stack to execute other code while the array is processed. **It is important to mention that this method does not preserve order, if that is an important factor it would be necessary to incorporate other techniques such as gating**.
