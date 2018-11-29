@@ -144,7 +144,7 @@ console.log(c); // 5
 - Javascript leverages an identical code pattern however the functionality is entirely different. In JS a constructor is just a function which is not attached to a specific class, nor do they instantiate the class. If we were to elaborate the process followed when the `new` keyword is invoked it would look like this:
   1. a new object is created (or constructed)
   2. the newly constructed object is prototype-linked.
-  3. the newly constructored object is set as the `this` binding for that function call
+  3. the newly constructed object is set as the `this` binding for that function call
   4. unless the function returns its own alternate object, the `new`-invoked function call will automatically return the newly constructed object.
 
 ```js
@@ -166,7 +166,7 @@ Car.prototype.driveCar = function() {
   this.mileage += 10;
 };
 
-let myNewCar = new Car('Porsche', 'GT3', 'Gray');
+var myNewCar = new Car('Porsche', 'GT3', 'Gray');
 myNewCar.drivecar();
 
 class Truck {

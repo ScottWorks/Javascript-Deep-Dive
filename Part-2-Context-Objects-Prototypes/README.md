@@ -12,4 +12,6 @@ Note: this section follows closely with [You Dont Know JS: this & Object Prototy
 
 #### 5. [Prototypes](Prototypes.md)
 
+#### TODO Add notes on [ProtoType Linkage](http://www.javascripttutorial.net/javascript-prototype/)
+
 #### 6. [ES6 Classes](ES6Classes.md)
