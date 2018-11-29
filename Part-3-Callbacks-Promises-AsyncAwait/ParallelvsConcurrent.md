@@ -26,9 +26,31 @@ ajax('http://some.url.1', foo);
 ajax('http://some.url.2', bar);
 ```
 
-- Notice the asynchornous `ajax()` calls at the end of the program which actually creates a "race condition", with multi-threading it is possible that this program can return 21, or 44 depending on which `ajax` call returns first and also depending on how the different threads manage the shared temporary state.
+- Notice the asynchornous `ajax()` calls at the end of the program which actually creates a "race condition", with multi-threading it is possible that this program can return 21, or 44 depending on which `ajax` call returns first and also depending on how the different threads manage the shared temporary state. To further understand the latter case we must keep in mind that multiple threads are now managing code execution, therefore each step in the process must be broken down into low-level operations as shown below:
 
 ```
+Thread 1
+
+foo():
+  a. load value of `a` in `X`
+  b. store `1` in `Y`
+  c. add `X` and `Y`, store result in `X`
+  d. store value of `X` in `a`
+```
+
+```
+Thread 2
+
+bar():
+  a. load value of `a` in `X`
+  b. store `2` in `Y`
+  c. multiply `X` and `Y`, store result in `X`
+  d. store value of `X` in `a`
+```
+
+```
+Scenario 1
+
 1a  (load value of `a` in `X`   ==> `20`)
 2a  (load value of `a` in `X`   ==> `20`)
 1b  (store `1` in `Y`   ==> `1`)
@@ -40,6 +62,8 @@ ajax('http://some.url.2', bar);
 ```
 
 ```
+Scenario 2
+
 1a  (load value of `a` in `X`   ==> `20`)
 2a  (load value of `a` in `X`   ==> `20`)
 2b  (store `2` in `Y`   ==> `2`)
