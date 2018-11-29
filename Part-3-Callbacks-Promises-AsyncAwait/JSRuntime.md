@@ -1,8 +1,10 @@
-## Asynchronous JavaScript
+## JavaScript Runtime
+
+### Asynchronous JavaScript
 
 - In previous sections we considered cases that were strictly synchronous, that is every program ran from top to bottom in the order it was given. If the program were run it would generally be completed within milliseconds. In many applications we must consider how the program will behave over a period of time that may range from milliseconds to hours or even years. Instances where an application makes an API call, retrieves information from a database, or perform a repeated task over a time interval (i.e. Animations), all require a response, this takes an indeterminant amount of time and therefore the application must do one of two things. Either wait for the response or continue executing code until the response comes back, then return. The latter is what we consider to be Asynchronous JavaScript. Synchronous code in a single threaded language like JS is almost always a bad idea, just imagine if you made an API request in a program that is synchronous. While the program awaits for a response nothing else can be done because we have effectively blocked the call stack (more on this later).
 
-### JavaScript Runtime
+### JavaScript Concurrency Model
 
 - This section assumes a fair amount of knowledge about the JS runtime, and general computing concepts. To provide some context, I will take a moment to dive into some of these areas.
 
@@ -43,7 +45,7 @@ console.log(bar(7)); //returns 42
 
 #### Queue
 
-- The message queue is a list of messages that are waiting to be processed, each message has an associated callback function. When the stack is empty the message queue is checked, if there is a callback function available it will be moved to the stack. This happens when asynchronous events occur in the program i.e. button click, http request, etc, provided that a callback or promise is associated with the event.
+- The message queue is a "First-In First Out" (FIFO) list of messages that are waiting to be processed, each message has an associated callback function. When the stack is empty the message queue is checked, if there is a callback function available it will be moved to the stack. This happens when asynchronous events occur in the program i.e. button click, http request, etc, provided that a callback or promise is associated with the event.
 
 #### Event Loop
 
@@ -76,3 +78,5 @@ console.log('Prints Second');
 8. Call stack empty, event loop moves callback to stack from message queue
 9. `console.log('Print Third')` is added to call stack, then removed from call stack
 10. Finished
+
+##### NOTE: The event loop is an implementation detail and is slightly different depending on the host enviroment i.e. Web Browser, Node.js, etc.
