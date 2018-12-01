@@ -1,7 +1,6 @@
 ## Closure
 
-- Closure is when a function "remembers" its lexical scope even when the function is executed outside that lexical scope. It is a characteristic of functions in a lexically scoped envrioment that allows the function to continue accessing variables outside of itself even when it is executed somewhere else.
-  - Visually this looks like like a function that executes inside of another function that has its own independent scope.
+- Closure is when a function "remembers" its lexical scope even when the function is executed outside that lexical scope. It is a characteristic of functions in a lexically scoped envrioment that allows the function to continue accessing variables outside of itself even when it is executed somewhere else. Visually this looks like like a function that executes inside of another functions scope.
 
 ```js
 function foo() {
@@ -15,11 +14,34 @@ function foo() {
 }
 
 function bam(baz) {
-  // This is a closure
-  baz();
+  baz(); // baz() is a closure
 }
 
-foo(); // bar
+foo()); // returns bar
+```
+
+- If we look closely we can trace the `foo()` function, 1) the `bar` variable is declared, 2) the `baz()` function is declared. 3) the `bam()` function is called taking the `baz()` function as a callback function. When `bam()` is called it returns `baz()` what is interesting is that `baz()` fires off the `console.log()` and returns `bar`. This is significant, and it follows our definition from earlier, the function `baz()` is invoked inside of `bam()` this is objectively not the same lexical scope where `baz()` was declared however `baz()` still returns the `bar` because it "remembers" its lexical scope! Pretty amazing... We can take the same basic logic and apply a couter, the results would be that each time function `foo()` is called it will increment the variable `bar`. **Keep in mind that the inner function (`baz()`) isnt actually returning `bar` to the outer function, therefore we must interact with the variables in the inner function and return them there as well. It is also important to recognize that we are actually invoking `baz()` each time `closure()` is called.**
+
+```js
+function foo() {
+  var bar = 0;
+
+  return function baz() {
+    bar++;
+    return bar;
+  };
+
+  bam(baz);
+}
+
+function bam(baz) {
+  baz(); // baz() is a closure
+}
+
+var closure = foo();
+console.log(closure()); // 1
+console.log(closure()); // 2
+console.log(closure()); // 3
 ```
 
 ### Loops and Closures
@@ -82,9 +104,7 @@ for (var i = 1; i <= 5; i++) {
 }
 ```
 
-- Notice that we essentially store the current `i` value after each iteraction by adding it to the function scope of the IIFE
-
-- Alternatively we can provide the block scope with its own instance of `i`...
+- Notice that we essentially store the current `i` value after each iteraction by adding it to the function scope of the IIFE. Alternatively we can provide the block scope with its own instance of `i`...
 
 ```js
 for (let i = 1; i <= 5; i++) {
@@ -94,7 +114,7 @@ for (let i = 1; i <= 5; i++) {
 }
 ```
 
-Either of these approaches would result in the following:
+- Either of these approaches would result in the following:
 
 ```
 Iteration: 1
@@ -141,7 +161,6 @@ timer(): Ok im ready, print 5
 1.  Keeping data private and encapsulated (i.e. module pattern)
 
 2.  Allowing us to create multiple instances that are independent.
-    - Keep in mind that the inner function isnt actually returning the variable to the outer function, therefore we must interact with the variables in the inner function.
 
 ```js
 function outer() {

@@ -1,6 +1,6 @@
 ## Callbacks
 
-- In JavaScript a callback function is a function which is passed into another function, the function that is passed in will later be invoked inside of the parent function creating a new routine or action to be completed. You can think of a callback as a 'trigger' for JavaScript to stop, look for other things to do then 'call-back' that function when it frees up.
+- In JavaScript a callback function is a function which is passed into another function, the function that is passed in will later be invoked inside of the parent function creating a new routine or action to be completed. You can think of a callback as a 'trigger' for JavaScript to stop, look for other things to do then "call-back" that function when it has nothing to do again.
 
 ```js
 function someFunction(string, callback) {
