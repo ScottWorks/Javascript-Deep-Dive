@@ -17,7 +17,7 @@ function bam(baz) {
   baz(); // baz() is a closure
 }
 
-foo()); // returns bar
+foo(); // returns bar
 ```
 
 - If we look closely we can trace the `foo()` function, 1) the `bar` variable is declared, 2) the `baz()` function is declared. 3) the `bam()` function is called taking the `baz()` function as a callback function. When `bam()` is called it returns `baz()` what is interesting is that `baz()` fires off the `console.log()` and returns `bar`. This is significant, and it follows our definition from earlier, the function `baz()` is invoked inside of `bam()` this is objectively not the same lexical scope where `baz()` was declared however `baz()` still returns the `bar` because it "remembers" its lexical scope! Pretty amazing... We can take the same basic logic and apply a couter, the results would be that each time function `foo()` is called it will increment the variable `bar`. **Keep in mind that the inner function (`baz()`) isnt actually returning `bar` to the outer function, therefore we must interact with the variables in the inner function and return them there as well. It is also important to recognize that we are actually invoking `baz()` each time `closure()` is called.**
@@ -30,12 +30,6 @@ function foo() {
     bar++;
     return bar;
   };
-
-  bam(baz);
-}
-
-function bam(baz) {
-  baz(); // baz() is a closure
 }
 
 var closure = foo();
