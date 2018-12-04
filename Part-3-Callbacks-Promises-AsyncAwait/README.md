@@ -14,3 +14,4 @@
 
 - [JavaScript — from callbacks to async/await](https://medium.freecodecamp.org/javascript-from-callbacks-to-async-await-1cc090ddad99)
 - [Callback Hell](http://callbackhell.com/)
+- [Promise Basics](https://javascript.info/promise-basics)
