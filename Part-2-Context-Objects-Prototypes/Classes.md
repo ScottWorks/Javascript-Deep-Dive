@@ -18,7 +18,7 @@
 
 ### Javascript "Classes"
 
-- While this section does cover classes at length, it is important to keep in mind that JavaScript does not actually have classes. The syntax is decieving however the low level mechanics of JS operate differenly then languages like Java or C++. It is possible to replicate classes in the classical sense but that comes with a great deal of effort. The purpose of this section is to explore the different pitfalls of the JS class system.
+- While this section does cover classes at length, it is important to keep in mind that JavaScript does not actually have classes. The syntax is decieving however the low level mechanics of JS operate differenly then languages like Java or C++. It is possible to replicate classes in the classical sense but that comes with a great deal of effort. We discuss this more later on in this part of the series.
 
 ### Class Mechanics
 
