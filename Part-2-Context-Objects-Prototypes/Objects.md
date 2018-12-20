@@ -87,7 +87,7 @@ car['model'] // 'M4'
 car['year'] // 2019
 ```
 
-- We can also use the 'square-bracket' notation to dynamically add new keys/ values to an existing object.
+- We can also use the 'square-bracket' notation to dynamically add new keys/ values to an existing object for variables that may have non alphabetic characters.
 
 ```js
 var car = {
@@ -96,15 +96,13 @@ var car = {
   year: 2019
 }
 
-car['driver'] = 'Me'
-car['passenger'] = 'You'
+car['driver-passenger'] = 'Me-You'
 
 // car = {
 //   make: 'BMW'
 //   model: 'M4'
 //   year: 2019,
-//   driver: 'Me',
-//   passenger: 'You'
+//   driver-passenger: 'Me-You',
 // }
 ```
 
@@ -159,7 +157,7 @@ myObject.a; // 2
 
 ### `[[GET]]`
 
-- Property access is performed via a `[[GET]]` operation for the object of interest. The built-in `[[GET]]` operation first inspects the object for a property of the requested name, if the property is found it will return it. If the `[[GET]]` operation cannot find the property then it will traverse the `[[ProtoType]]` chain until it finds it, otherwise it returns with an `undefined`.
+- Property access is performed via a `[[GET]]` operation for the object of interest. The built-in `[[GET]]` operation first inspects the object for a property of the requested name, if the property is found it will return it. If the `[[GET]]` operation cannot find the property then it will traverse the `Prototype` chain until it finds it, otherwise it returns with an `undefined`.
 
 ```js
 var myObject = {

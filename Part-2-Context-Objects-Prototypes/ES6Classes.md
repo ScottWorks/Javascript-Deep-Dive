@@ -2,13 +2,13 @@
 
 #### NOTE: This section assumes a basic level of knowledge in regard to ES6 Classes, to learn more visit [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) or [here](http://javascript.info/class)
 
-- In ES6 `class`es were introduced in the form of syntactic sugar, at first glance it would appear that this is something entirely new as it resembles classes in traditional programming languages however this is not the case. The `class` system is actually a very complicated set of abstractions built on top of the `[[ProtoType]]` mechanism. Although I did not dive into the problems associated with the this mechanism you can read more about them [here](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md). In this section we will discuss the problems that the JS `class` system has that way we can make better decisions while using it.
+- In ES6 `class`es were introduced in the form of syntactic sugar, at first glance it would appear that this is something entirely new as it resembles classes in traditional programming languages however this is not the case. The `class` system is actually a very complicated set of abstractions built on top of the `Prototype` mechanism. Although I did not dive into the problems associated with the this mechanism you can read more about them [here](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md). In this section we will discuss the problems that the JS `class` system has that way we can make better decisions while using it.
 
 ### `class` Pitfalls
 
 #### 1. Links not Copies!
 
-- Since `[[ProtoType]]` linkages are still being used under the hood of `class` that means that 'classes' are still only referenced objects conneted via links and not copies instances. Hence it is possible to change methods/ properties in a parent function that affect its complementary child even after the child has been "instantiated".
+- Since `Prototype` linkages are still being used under the hood of `class` that means that 'classes' are still only referenced objects conneted via links and not copies instances. Hence it is possible to change methods/ properties in a parent function that affect its complementary child even after the child has been "instantiated".
 
 ```js
 class C {
