@@ -34,7 +34,7 @@ myObject.b; // undefined
 
 ### Class vs `[[ProtoType]]`
 
-- In traditional class-oritented programming languages creating a new instance of a class is analogous to using a blueprint for building identical copies of a home. Each new home that is created is its own unique instance and this process can be repeated as many times as needed. In JS however we do not follow this same process when creating creating new obhects. Instead we create multiple objects that are **linked** via the `[[ProtoType]]` chain to a common parent object. Therefor for each object instance the properties and methods from the parent are not actually being transferred to the child, rather the child references the parent properties and methods through the `[[ProtoType]]` chain.
+- In traditional class-oritented programming languages creating a new instance of a class is analogous to using a blueprint for building identical copies of a home. Each new home that is created is its own unique instance and this process can be repeated as many times as needed. In JS however we do not follow this same process when creating creating new obhects. Instead we create multiple objects that are **linked** via the `[[ProtoType]]` chain to a common parent object. For each object instance the properties and methods from that are added to parent `[[ProtoType]]` are not actually being transferred to the child, rather the child references the parent properties and methods through the `[[ProtoType]]` chain.
 
 - Some common areas people get get tripped up on are generally related to the similarities in syntax that JS shares with other class oriented languages. These similarties include:
 
@@ -73,3 +73,7 @@ myObject.b; // undefined
 - "`[[Prototype]]` mechanism is an internal link that exists on one object which references another object. This linkage is exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the `[[Prototype]]` linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the look-up, its `[[Prototype]]` is followed, and so on. This series of links between objects forms what is called the "prototype chain". In other words, the actual mechanism, the essence of what's important to the functionality we can leverage in JavaScript, is all about objects being linked to other objects.", [source](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md#chapter-6-behavior-delegation).
 
 ![fig2](/Part-2-Context-Objects-Prototypes/images/fig2.png)
+
+### [[[ProtoType]] Linkage](http://www.javascripttutorial.net/javascript-prototype/)
+
+### [Constructor Function vs [[ProtoType]]](https://www.thecodeship.com/web-development/methods-within-constructor-vs-prototype-in-javascript/)

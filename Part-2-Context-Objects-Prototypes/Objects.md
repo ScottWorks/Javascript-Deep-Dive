@@ -65,26 +65,47 @@ console.log(strPrimitive.charAt(3)); // "m"
 
 - We can observe from the above code snippet that the `strObject` was created by the `String` constructor and is therefore an object. By contrast `strPrimitive` is not an object. This is odd many of us have used the `.length` method to find the length of a primitive literal and it works without fail. The reason for this is that the JavaScript engine coerces the primitive into object form. I should also note that this is the preferred way, in general the constructed form should only be used if you require the extra options.
 
-#### Object Properties
+#### Object Access
 
-- A quick note on semantics; when discussing property access on an object it is common to trip up and imply that a function belongs to an object, this is not how objects work in JS. Functions are not owned by objects, although some functions leverage `this` keywords which at some point in time refer to an object. While this may be the case the function is dynamically bound at run-time, and dependent on the call-site therefore the relationship to the object is indirect.
+- Object values can be accessed using either 'dot' or 'square-bracket' notation.
 
 ```js
-function foo() {
-  console.log('foo');
+var car = {
+  make: 'BMW'
+  model: 'M4'
+  year: 2019
 }
 
-var someFoo = foo; // variable reference to `foo`
+// Dot Notation
+car.make // 'BMW'
+car.model // 'M4'
+car.year // 2019
 
-var myObject = {
-  someFoo: foo
-};
+// Square-Bracket Notation
+car['make'] // 'BMW'
+car['model'] // 'M4'
+car['year'] // 2019
+```
 
-foo; // function foo(){..}
+- We can also use the 'square-bracket' notation to dynamically add new keys/ values to an existing object.
 
-someFoo; // function foo(){..}
+```js
+var car = {
+  make: 'BMW'
+  model: 'M4'
+  year: 2019
+}
 
-myObject.someFoo; // function foo(){..}
+car['driver'] = 'Me'
+car['passenger'] = 'You'
+
+// car = {
+//   make: 'BMW'
+//   model: 'M4'
+//   year: 2019,
+//   driver: 'Me',
+//   passenger: 'You'
+// }
 ```
 
 ### Arrays
@@ -158,3 +179,43 @@ myObject.b; // undefined
   3. As a catch-all the value is set.
 
 - If the property is not present on the object then the `[[PUT]]` opertation becomes even more compicated (more on this later in [ProtoTypes](/Part-2-Context-Objects-Prototypes/Prototypes.md))
+
+## Creating new Objects
+
+- At this point we are familiar with some of the built-in objects that are offered out of the box in JavaScript. As a programmer you will likely be interested in creating your own objects at some point, this is basically mandatory if you choose to do any OOP. There are two methods in which we can achieve this; using the `Object Initializer`, or a `Constructor Function`.
+
+### Object Initializer
+
+- The `Object Initializer` method of object creation is fairly straightfoward. In fact it was implicitly demondstated a few times earlier. Essentially we create an object using literal notation, in otherwords we explicitly state what the properties (identifiers) of the object are.
+
+```js
+var objLiteral = {
+  see: 'its',
+  that: 'easy'
+};
+```
+
+### Constructor Functions
+
+- As we mentioned before our alternative to the `Object Initializer` is the `Constructor Function`. The constructor function allows us to instantiate an object by invoking that function in conjunction with the `new` operator. By doing so we can create seperate instances of the Object. Later we will discuss the importance of the `this` keyword, and how inheritance works in JavaScript.
+
+```js
+// Construtctor Function
+function Car(make, model, year) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+
+  this.displayCar = function() {
+    return `${this.make} - ${this.model} - ${this.year}`;
+  };
+}
+
+var roadrace = new Car('Porsche', 'GT3RSR', '2019');
+var rally = new Car('Subaru', 'WRX STi', '2019');
+var commuter = new Car('Audi', 'RS6 Avant', '2019');
+
+console.log(roadrace.displayCar()); // Porsche - GT3RSR - 2019
+console.log(rally.displayCar()); // Subaru - WRX STi - 2019
+console.log(commuter.displayCar()); // Audi - RS6 Avant - 2019
+```

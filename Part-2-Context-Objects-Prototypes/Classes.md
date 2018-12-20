@@ -18,17 +18,17 @@
 
 ### Javascript "Classes"
 
-- While this section does cover classes at length, it is important to keep in mind that JavaScript does not actually have classes. The syntax is decieving however the low level mechanics of JS operate differenly then languages like Java or C++. It is possible to replicate classes in the classical sense but that comes with a great deal of effort. We discuss this more later on in this part of the series.
+- While this section does cover JavaScipts version of OOP at length, it is important to keep in mind that JavaScript does not actually have classes. The syntax abstracts things in a way that makes OOP in JS seem similar to other languages such as C++ or Java however the low level mechanics of JS operate differenly. It is possible to replicate classes in the classical sense but that comes with a great deal of effort. We discuss this more later on in this part of the series.
 
 ### Class Mechanics
 
-- We can think of classes as a blueprint which describes the design of a building. The blueprints themself are not the whole story though, we must actually construct a building (an object) by following the blueprints. Therefore we use classes to construct (or instantiate) objects, each time we instantiate an object we create an "instance" which is a completely new copy of the class contaainig all of its characteristics. Think of homes that share the same blueprint, if a window gets smashed in one home does it occur to all the others? No! of course not each home is its own individual instance of a home, they share the same blueprint but that is all. In the following figure (kindly provided by [Kyle Simpson](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md)) we can see the visual relationship between two classes (foo and bar) and the object instances they produce (Foo.a1, Foo.a2, Foo.b1, Foo.b2). Keep in mind it is better to think of the direct relationship as top-down (class to an object instance) rather than the reverse indirect relationship.
+- We can think of classes as a blueprint which describes the design of a building. The blueprints themself are not the whole story though, we must actually construct a building (an object) by following the blueprints. Therefore we use classes to construct (or instantiate) objects, each time we instantiate an object we create an "instance" which is a completely new copy of the class containig all of its characteristics. Think of homes that share the same blueprint, if a window gets smashed in one home does it occur to all the others? No! of course not each home is its own individual instance of a home, they share the same blueprint but that is all. In the following figure (kindly provided by [Kyle Simpson](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch4.md)) we can see the visual relationship between two classes (foo and bar) and the object instances they produce (Foo.a1, Foo.a2, Foo.b1, Foo.b2). Keep in mind it is better to think of the direct relationship as top-down (class to an object instance) rather than the reverse indirect relationship.
 
 ![fig1](/Part-2-Context-Objects-Prototypes/images/fig1.png)
 
 #### Constructor
 
-- As we discussed in the previous section in traditional class-oriented programming languages **Constructor** is a special method attached to a class. The purpose of the constructor method is to initialize any iniformation (state) the instance will need. Constructors are generally called with the `new` keyword to signal to the compiler engine that a new class instance should be created.
+- As we discussed in the previous section in traditional class-oriented programming languages **Constructor** is a special method attached to a class. The purpose of the constructor method is to initialize any iniformation (state) the instance will need. Constructors are generally called with the `new` keyword to signal to the compiler engine that a new class instance should be created. We'll explore the `Constructor Function` later on.
 
 ### Class Inheritance
 
