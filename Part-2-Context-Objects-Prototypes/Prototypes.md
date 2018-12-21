@@ -24,6 +24,8 @@ myObject.a; // 2
 myObject.b; // undefined
 ```
 
+![fig8](/Part-2-Context-Objects-Prototypes/images/fig8.png)
+
 ### Class vs `Prototype`
 
 - In traditional class-oritented programming languages creating a new instance of a class is analogous to using a blueprint for building identical copies of a home. Each new home that is created is its own unique instance and this process can be repeated as many times as needed.
@@ -35,20 +37,6 @@ myObject.b; // undefined
   1. usage of the `new` keyword
   2. defining classes with capital letters (`Class Car()`)
   3. the constructor appears to be part of a specific object then the built-in `Object.prototype`:
-
-  ```js
-  function Foo() {
-    /* .. */
-  }
-
-  Foo.prototype = {
-    /* .. */
-  }; // create a new prototype object
-
-  var a1 = new Foo();
-  a1.constructor === Foo; // false!
-  a1.constructor === Object; // true!
-  ```
 
 #### `Object.prototype`
 
@@ -133,13 +121,7 @@ console.log(Car.prototype);
 
 #### `Object.prototype.constructor`
 
-- In the code snippet above we may interpret this as object `a` having its own `.constructor` property. This is not the case however in this example as we have taken the liberty of , when `a` is linked to `Foo` (which is linked to `Object.prototype`) via the `Prototype` chain `a` gains access to the `.constructor` (which is property of the [`Object.prototype`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor). To clear things up a bit when `a.constructor` is called, the following happens:
-
-  - `Prototype` checks `a` object, constructor is not found
-  - `Prototype` checks `Foo.prototype` object, constructor is not found
-  - `Prototype` checks `Object.prototype` object, constructor is found!
-
-- If we did not overwrite the `Foo.prototype`, the `Prototype` chain would find `.constructor` at the `Foo.prototype`. Therefore `a1.constructor === Foo;` would return `true`.
+- When an object is created the `constructor function` will automatically create a `Prototype` object for the new object. This `Prototype` object is stored as part of the `Object.prototype.constructor` object.
 
 ### Prototype Linkage
 
