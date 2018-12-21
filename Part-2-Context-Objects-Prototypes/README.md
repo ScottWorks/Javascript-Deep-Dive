@@ -8,9 +8,11 @@ Note: this section follows closely with [You Dont Know JS: this & Object Prototy
 
 #### 3. [Prototypes](Prototypes.md)
 
-- Add notes on [ProtoType Linkage](http://www.javascripttutorial.net/javascript-prototype/)
+- Compare methods created by Constructor Function vs Protoype
 
 #### 4. [Context](Context.md)
+
+- Provide a more concise definition of `this` keyword
 
 #### 5. [Binding](Binding.md)
 
@@ -21,3 +23,4 @@ Note: this section follows closely with [You Dont Know JS: this & Object Prototy
 - [Working with objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Using_a_constructor_function)
 - [Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 - [JavaScript Prototype Explained By Examples](http://www.javascripttutorial.net/javascript-prototype/)
+- [JavaScript. The Core.](http://dmitrysoshnikov.com/ecmascript/javascript-the-core/)
