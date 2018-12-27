@@ -4,7 +4,7 @@
 
 ### `this` keyword
 
-- So what exactly is the `this` keyword? We have seen it plastered all over our constructor methods. The `this` keyword is a pointer to the specific object instance that is referencing either a property or method of an Object. Take for example the code below:
+- So what exactly is the `this` keyword? We have seen it plastered all over our constructor functions and prototype methods. The `this` keyword is a pointer to the specific object instance that is referencing either a property or method of an Object. Take for example the code below:
 
 ```js
 function Room(room, floor, isClean) {
