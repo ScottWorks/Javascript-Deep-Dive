@@ -10,8 +10,6 @@ Note: this section follows closely with [You Dont Know JS: this & Object Prototy
 
 #### 4. [Context](Context.md)
 
-- Provide a more concise definition of `this` keyword
-
 #### 5. [Binding](Binding.md)
 
 #### 6. [ES6 Classes](ES6Classes.md)
