@@ -1,6 +1,64 @@
 ## Context
 
-- Scope is generally handled in one of two ways; either your references are based on rules defined by **Lexical Scope** or they are handled in a "Dynamic" way. In the latter case, Dynamic Scope does not actually exist in JS, instead there is the concept of context (similar to Dynamic Scope) where access to variables and functions is handled via the **`this`** keyword. We can visualize both of these paradigms as if they were buildings where each room in the building (represented by a window) is a different scope or context object, the variables/ functions defined in that scope or context can be located based on the combination of floor and room number. It is also worth noting that it usually is not the case that a programmer must choose Lexical Scope over Context, infact it is likely to be advantagous to properly use both within the same program.
+- Scope is generally handled in one of two ways; either your references are based on rules defined by **Lexical Scope** or they are handled in a "Dynamic" way. In the latter case, Dynamic Scope does not actually exist in JS, instead there is the concept of context (similar to Dynamic Scope) where access to variables and functions is handled via the **`this`** keyword.
+
+### `this` keyword
+
+- So what exactly is the `this` keyword? We have seen it plastered all over our constructor methods. The `this` keyword is a pointer to the specific object instance that is referencing either a property or method of an Object. Take for example the code below:
+
+```js
+function Room(room, floor, isClean) {
+  this.room = room;
+  this.floor = floor;
+  this.isClean = isClean;
+  this.occupants = 0;
+}
+
+Room.prototype.clean = function() {
+  this.isClean = true;
+};
+
+Room.prototype.addOccupants = function(num) {
+  this.occupants += num;
+};
+
+Room.prototype.removeOccupants = function() {
+  this.occupants = 0;
+};
+
+var myOffice = new Room(1, 27, false),
+  yourOffice = new Room(4, 12, true);
+
+console.log(myOffice);
+// Room { room: 1, floor: 27, isClean: false, occupants: 0 }
+console.log(yourOffice);
+// Room { room: 4, floor: 12, isClean: true, occupants: 0 }
+
+myOffice.clean();
+myOffice.addOccupants(3);
+
+console.log(myOffice);
+// Room { room: 1, floor: 27, isClean: true, occupants: 3 }
+console.log(yourOffice);
+// Room { room: 4, floor: 12, isClean: true, occupants: 0 }
+
+yourOffice.addOccupants(5);
+
+console.log(myOffice);
+// Room { room: 1, floor: 27, isClean: true, occupants: 3 }
+console.log(yourOffice);
+// Room { room: 4, floor: 12, isClean: true, occupants: 5 }
+```
+
+- As you can see I decided to use an example that will soon be relevant, basically we have object instances of `Room`s in a building. Each room shares the same properties and methods of the `Room` object. For example when the `addOccupants()` method is called the `this` keyword reference the object instance calling it, in the case above the first time is `myOffice` and the second time is `yourOffice`.
+
+### Lexical Scope vs `Object.prototype`
+
+- As we mentioned earlier the usage of the `this` keyword is a similar concept to Dynamic Scope in the sense that references are established based on the call-site rather than author-time variable and function placement. We can see through our previous example how the `Prototype` chain is traveresed to find the context related to the `this` keyword.
+
+- "`Prototype` mechanism is an internal link that exists on one object which references another object. This linkage is exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the `Prototype` linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the look-up, its `Prototype` is followed, and so on. This series of links between objects forms what is called the "prototype chain". In other words, the actual mechanism, the essence of what's important to the functionality we can leverage in JavaScript, is all about objects being linked to other objects.", [source](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md#chapter-6-behavior-delegation).
+
+![fig2](/Part-2-Context-Objects-Prototypes/images/fig2.png)
 
 ### Leixcal Scope vs `Context` (`this` keyword)
 
@@ -10,51 +68,3 @@
 | references based on                          | placement of variables/ functions | global or context object     |
 | access control mechanisms                    | closures, hoisting                | binding, inheritence, mixins |
 | considered to be                             | predictable                       | flexible                     |
-
-#### `this` Keyword
-
-- Some common misconceptions about the `this` keyword include:
-
-  1. Refers to the function itself
-  2. Refers to the functions lexical scope
-
-- The `this` keyword is actually not a binding created when written in code but rather at runtime, the nature of the binding is subject to changes due to the conditions of the functions invocaton. The `this` binding has nothing to do with the function declaration but rather which manner it has been declared in.
-
-- According to [You Dont Know JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch1.md) `this` is actually a binding that is made when a function is invoked, and what it references is determined entirely by the call-site where the function is called, how the function was invoked, what parameters were passed, etc. One of the properties of this record is the `this` reference which will be used for the duration of that function's execution.
-
-- It is important to understand that the 'call-site' refers to the place in code logic where the function is called and not where it was declared. It is helpful to think about the call-stack or the stack of functions that have been called to get us to the current moment in execution.
-
-```js
-function baz() {
-  // call-stack is: `baz`
-  // so, our call-site is in the global scope
-
-  console.log('baz');
-  bar(); // <-- call-site for `bar`
-}
-
-function bar() {
-  // call-stack is: `baz` -> `bar`
-  // so, our call-site is in `baz`
-
-  console.log('bar');
-  foo(); // <-- call-site for `foo`
-}
-
-function foo() {
-  // call-stack is: `baz` -> `bar` -> `foo`
-  // so, our call-site is in `bar`
-
-  console.log('foo');
-}
-
-baz(); // <-- call-site for `baz`
-```
-
-### Lexical Scope vs `Object.prototype`
-
-- As we mentioned earlier the usage of the `this` keyword is a similar concept to Dynamic Scope in the sense that references are established based on the call-site rather than author-time variable and function placement. We can see through our previous example how the `Prototype` chain is traveresed to find the context related to the `this` keyword.
-
-- "`Prototype` mechanism is an internal link that exists on one object which references another object. This linkage is exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the `Prototype` linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the look-up, its `Prototype` is followed, and so on. This series of links between objects forms what is called the "prototype chain". In other words, the actual mechanism, the essence of what's important to the functionality we can leverage in JavaScript, is all about objects being linked to other objects.", [source](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch6.md#chapter-6-behavior-delegation).
-
-![fig2](/Part-2-Context-Objects-Prototypes/images/fig2.png)

@@ -174,6 +174,26 @@ b.say = function() {
 
 - As I stated earlier, if the either `a.whoAmI()` or `b.whoAmI()` are called they would have to traverse the prototype chain until `whoAmI()` is found. It is also totally possible to either intentionally or unintentionally create the `whoAmI()` method on the `a` object. If `a.whoAmI()` is called the method on the `a` object will be referenced rather than `Foo.protoype`.
 
+- Shadowing can be very subtle, for example the following code wont work because the property `color` shadows the method `color()`.
+
+```js
+function Car(make, model, year, color) {
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.color = color;
+}
+
+Car.prototype.color = function(color) {
+  this.color = color;
+};
+
+var racecar = new Car('Porsche', 'GT3RSR', 2019, 'Shark Grey');
+
+racecar.color('Raceday Red'); // TypeError: racecar.color is not a function
+console.log(racecar());
+```
+
 ### Constructor Function vs `Prototype`
 
 - As we have already discovered, in JS we can define methods for classes in one of two ways. Either we can create the method directly in the constructor function or we can add it to the `Prototype`. But what is the difference?
