@@ -50,7 +50,7 @@ console.log(yourOffice);
 // Room { room: 4, floor: 12, isClean: true, occupants: 5 }
 ```
 
-- As you can see I decided to use an example that will soon be relevant, basically we have object instances of `Room`s in a building. Each room shares the same properties and methods of the `Room` object. For example when the `addOccupants()` method is called the `this` keyword reference the object instance calling it, in the case above the first time is `myOffice` and the second time is `yourOffice`.
+- As you can see I decided to use an example that will soon be relevant, basically we have object instances of `Room`s in a building. Each room shares the same properties and methods of the `Room` object. When `myOffice.clean()` is called the `clean()` method knows it needs to reference its the object instance `myOffice` when changing the `this.isClean` property from false to true. Notice how this has nothing to do with Lexical scope in the sense that I am able to reference values without worrying about where functions or properties are declared but rather how they are declared.
 
 ### Lexical Scope vs `Object.prototype`
 
