@@ -174,4 +174,47 @@ b.say = function() {
 
 - As I stated earlier, if the either `a.whoAmI()` or `b.whoAmI()` are called they would have to traverse the prototype chain until `whoAmI()` is found. It is also totally possible to either intentionally or unintentionally create the `whoAmI()` method on the `a` object. If `a.whoAmI()` is called the method on the `a` object will be referenced rather than `Foo.protoype`.
 
-### [Constructor Function vs [[ProtoType]]](https://www.thecodeship.com/web-development/methods-within-constructor-vs-prototype-in-javascript/)
+### Constructor Function vs `Prototype`
+
+- As we have already discovered, in JS we can define methods for classes in one of two ways. Either we can create the method directly in the constructor function or we can add it to the `Prototype`. But what is the difference?
+
+- The key advantage of using the constructor function is that we can take advantage of closure by declaring private variables in the and using them on some method that we create. This probably won't be the case most of the time and therefore its likely that the method is better to be placed on the `Prototype`. The `Prototype` has the advantage of taking up less memory. When an object instance is created everything in the constructor is added to the new Object instance, you can imagine that if hundreds or thousands of instances are created then that object becomes memory intensive. As we learned earlier, if a method is not found on the current `object.prototype`, the JS engine will traverse the prototype chain until the method is found, as a result we use less memory.
+
+- In the example below both approaches have been taken, the private varible `records` is only accessible via methods defined in the constructor. Variables that are publicly available can be accessed using `prototype` methods.
+
+```js
+function Person(name, family) {
+  this.name = name;
+  this.family = family;
+
+  var records = [{ type: 'in', amount: 0 }];
+
+  this.addTransaction = function(trans) {
+    if (trans.hasOwnProperty('type') && trans.hasOwnProperty('amount')) {
+      records.push(trans);
+    }
+  };
+
+  this.balance = function() {
+    var total = 0;
+
+    records.forEach(function(record) {
+      if (record.type === 'in') {
+        total += record.amount;
+      } else {
+        total -= record.amount;
+      }
+    });
+
+    return total;
+  };
+}
+
+Person.prototype.getFull = function() {
+  return this.name + ' ' + this.family;
+};
+
+Person.prototype.getProfile = function() {
+  return this.getFull() + ', total balance: ' + this.balance();
+};
+```
