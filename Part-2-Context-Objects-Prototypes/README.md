@@ -14,6 +14,10 @@ Note: this section follows closely with [You Dont Know JS: this & Object Prototy
 
 #### 6. [ES6 Classes](ES6Classes.md)
 
+#### Suggested Reading
+
+- [Master the JavaScript Interview: What’s the Difference Between Class & Prototypal Inheritance?](https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9)
+
 ### References
 
 - [Working with objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Using_a_constructor_function)
