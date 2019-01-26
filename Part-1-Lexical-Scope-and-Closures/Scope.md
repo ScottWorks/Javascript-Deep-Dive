@@ -144,40 +144,93 @@ c[0]++; // 3 <-- This could be a problem
 
 ## Hoisting
 
-- Hoisting is the process by which the JavaScript compiler moves declarations (variable and function) to the top of the code logic **for each scope**.
-  - Note that this only applies to declarations, statements are not hoisted.
+- Hoisting is the process by which the JavaScript compiler moves declarations (`var`, `function`) to the top of the code logic **for each scope** and initializes them with `undefined`. In the case of `let`, `const`, and `class` they are also hoisted but left uninitialized therefore they throw a `ReferenceError`.
+  - Note that this only applies to declarations, expressions are not hoisted.
   - Functions are prioritized first therefore they come before variables that are hoisted.
 - In JavaScript the following will have two completely different types of behaviour:
 
 ```js
-a = 2;
+a = 1;
+
+console.log(a); // 1
+console.log(b); // undefined
+// console.log(c); // Reference error: c is not defined
+console.log(foo); // [Function: foo]
+console.log(bar); // undefined
+// console.log(baz); // ReferenceError: baz is not defined
 
 var a;
-
-console.log(a); // prints 2
-
-// ---------------------------------
-
-console.log(b); // prints undefined
-
 var b = 2;
+let c = 3;
+
+console.log(b); // 2
+console.log(c); // 3
+
+function foo() {
+  console.log(d); // undefined
+  // console.log(e); // Reference error: e is not defined
+  // console.log(f); // Reference error: f is not defined
+
+  if (true) {
+    var d = 4;
+    let e = 5;
+    const f = 6;
+  }
+
+  console.log('foo');
+}
+
+var bar = function() {
+  console.log('bar');
+};
+
+const baz = function() {
+  console.log('baz');
+};
+
+foo();
+bar();
+baz();
 ```
 
 - The reason for this is because the variables are being hoisted upon compilation. This would look like the following if we wanted to visualize it.
 
 ```js
-var a;
-var b;
+var a = undefined
+var b = undefined
+let c // uninitialized
+var bar = undefined
+const baz // uninitialized
 
-a = 2;
+function foo() {
+  var d = undefined
+  let e // uninitialized
+  const f // uninitialized
 
-console.log(a); // prints 2
+  if (true) {
+    d = 4;
+    e = 5;
+    f = 6;
+  }
 
-// ---------------------------------
+  console.log('foo')
+}
 
-console.log(b); // prints undefined
-
+a = 1;
 b = 2;
+c = 3;
+
+bar = function() {
+  console.log('bar');
+};
+
+baz = function() {
+  console.log('baz');
+};
+
+foo()
+bar()
+baz()
 ```
 
 - It is important to remember that an assignment such as `var a = 2;` is actually done in two phases; during the compilation phase the declaration is processed, then during execution the assignment of a value to the target is handled.
