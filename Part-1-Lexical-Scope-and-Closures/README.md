@@ -6,8 +6,6 @@
 
 ### Suggested Content:
 
-- [A guide to JavaScript variable hoisting 🚩 with let and const](https://medium.freecodecamp.org/what-is-variable-hoisting-differentiating-between-var-let-and-const-in-es6-f1a70bb43d)
-
 - [Master the JavaScript Interview: What is a Closure?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36#.ecfskj935)
 
 ### TODOs:
